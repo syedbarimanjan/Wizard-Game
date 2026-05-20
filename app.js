@@ -2,6 +2,7 @@ const startScreen = document.getElementById("start-screen");
 const gameContainer = document.getElementById("game-container");
 const startBtn = document.getElementById("start-btn");
 const potionsCollectedElement = document.getElementById("potions-collected");
+const winScreen = document.getElementById("win-screen");
 console.log(potionsCollectedElement)
 
 const COLS = 70;
@@ -27,6 +28,7 @@ const UP = "UP";
 const DOWN = "DOWN";
 let potionsCollected = 0;
 let gameEnded = false;
+let gameWon = false;
 
 
 function createWorld() {
@@ -283,8 +285,14 @@ function createWizard({ game, sprite, position, scale }) {
         potionsCollected += 1;
         potionsCollectedElement.textContent = "Potions Collected: " + potionsCollected;
         self.game.world.level1.potionsLayer[row * COLS + col] = 0;
-      } else if (potionsCollected == 2) {
-        potionsCollectedElement.textContent = "You have collected the 2 potions, Now just explore and wait for enemies.";
+      }
+      //  else if (potionsCollected == 2) {
+      //   potionsCollectedElement.textContent = "You have collected the 2 potions, Now just explore and wait for enemies.";
+      // }
+      if (potionsCollected >= 2 && !gameWon) {
+        gameWon = true;
+
+        winScreen.classList.remove("hidden");
       }
     }
 
@@ -349,8 +357,13 @@ function createEnemy({ game, sprite, position, scale }) {
     if (distance < TILE_SIZE && !gameEnded) {
       gameEnded = true;
 
-      alert("Game Over!");
-      location.reload();
+      document.body.innerHTML = `
+        <div class="end-screen">
+          <h1 class="game-over-text">GAME OVER</h1>
+          <p>Enemy Caught You</p>
+          <button class="restart-btn" onclick="location.reload()">Restart</button>
+        </div>
+      `;
     }
   }
 
