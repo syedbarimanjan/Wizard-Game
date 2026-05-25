@@ -10,6 +10,9 @@ Who wouldnt want to build a game.
 # How to play
 Use arrows or wasd to move the wizard and find the hidden potions and and dont let enemy caught you if enemy caught you the game is over.
 
+# Demo
+https://github.com/user-attachments/assets/5e17f1a4-5938-4a73-b160-3b636aae7033
+
 # Screenshots
 ![screenshot](images/gameScreenshot1.png)
 ![screenshot](images/gameScreenshot2.png)
